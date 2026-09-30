@@ -1,0 +1,231 @@
+====
+simple numeric declaration
+====
+declare myNumber to 5.
+---
+
+(program
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (terminator))))
+
+====
+declaration with is
+====
+declare x is 42.
+---
+
+(program
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (terminator))))
+
+====
+declaration with boolean and string
+====
+declare isLocal to true.
+declare name to "Kerbal".
+---
+
+(program
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (boolean))))))))))
+      (terminator)))
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (string))))))))))
+      (terminator))))
+
+====
+multi-variable declaration
+====
+declare x to 1, y to 2, z to 3.
+---
+
+(program
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (terminator))))
+
+====
+mixed to and is in multi declaration
+====
+declare x to 1, y is 2.
+---
+
+(program
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (terminator))))
+
+====
+parameter declaration
+====
+declare parameter n to 10.
+parameter m is 7.
+---
+
+(program
+  (declaration
+    (parameter_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (terminator)))
+  (declaration
+    (parameter_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (terminator))))
+
+====
+lock and global declarations
+====
+lock myNumber to true.
+declare global config to "x".
+---
+
+(program
+  (declaration
+    (lock_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (boolean))))))))))
+      (terminator)))
+  (declaration
+    (identifier_clause
+      (identifier)
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (string))))))))))
+      (terminator))))

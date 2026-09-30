@@ -1,0 +1,31 @@
+====
+truncated set statement
+:error
+====
+set x to
+---
+()
+
+====
+unclosed block
+:error
+====
+if x {
+---
+()
+
+====
+print without expression
+:error
+====
+print.
+---
+()
+
+====
+declaration missing terminator
+:error
+====
+declare x to 5
+---
+()

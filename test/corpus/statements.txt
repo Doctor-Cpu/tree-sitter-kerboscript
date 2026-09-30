@@ -1,0 +1,535 @@
+====
+print statement
+====
+print myNumber.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+set statement
+====
+set myNumber to 10.
+---
+
+(program
+  (set_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator)))
+
+====
+multi set
+====
+set a to 1, b to 2, c to 3.
+---
+
+(program
+  (set_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator)))
+
+====
+add and remove
+====
+add "thing".
+remove "thing".
+---
+
+(program
+  (add_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator))
+  (remove_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+log statement
+====
+log "msg" to "file".
+---
+
+(program
+  (log_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+list statements
+====
+list myList.
+list x in y.
+---
+
+(program
+  (list_statement
+    (identifier)
+    (terminator))
+  (list_statement
+    (identifier)
+    (identifier)
+    (terminator)))
+
+====
+compile statement
+====
+compile "a" to "b".
+---
+
+(program
+  (compile_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+copy, rename, delete, edit
+====
+copy a to b.
+rename file a to b.
+delete "target".
+delete "target" from "parent".
+edit "a".
+---
+
+(program
+  (copy_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator))
+  (rename_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator))
+  (delete_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator))
+  (delete_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator))
+  (edit_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+run statements
+====
+run "script".
+run once "script".
+run myscript on ship.
+---
+
+(program
+  (run_statement
+    (string)
+    (terminator))
+  (run_statement
+    (string)
+    (terminator))
+  (run_statement
+    (file_identifier)
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+runpath statements
+====
+runpath ("a", 1, 2).
+runoncepath ("a").
+---
+
+(program
+  (runpath_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (arglist
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number)))))))))))
+    (terminator))
+  (runoncepath_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+misc statements
+====
+wait 5.
+wait until done.
+clearscreen.
+reboot.
+shutdown.
+toggle a.
+stage.
+break.
+preserve.
+return 5.
+switch to "case1".
+---
+
+(program
+  (wait_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (wait_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator))
+  (clearscreen_statement
+    (terminator))
+  (reboot_statement
+    (terminator))
+  (shutdown_statement
+    (terminator))
+  (toggle_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (terminator))
+  (stage_statement
+    (terminator))
+  (break_statement
+    (terminator))
+  (preserve_statement
+    (terminator))
+  (return_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (switch_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+empty statement and comment
+====
+// a comment
+.
+---
+
+(program
+  (comment)
+  (empty_statement
+    (terminator)))
+
+====
+identifier names starting with keywords
+====
+set truex to 1.
+set bool_flag to true.
+set БНЯД to 2.
+---
+
+(program
+  (set_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (set_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean))))))))))
+    (terminator))
+  (set_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator)))

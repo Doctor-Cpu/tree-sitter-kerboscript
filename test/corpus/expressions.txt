@@ -1,0 +1,617 @@
+====
+literals
+====
+print 42.
+print 3.14.
+print true.
+print false.
+print "hello".
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))))))
+    (terminator)))
+
+====
+arithmetic precedence
+====
+print 2^3 + 10/2 * 3 - 4.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number)))
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number)))))
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number)))))
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator)))
+
+====
+unary minus and not
+====
+print -5.
+print not false.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean))))))))))
+    (terminator)))
+
+====
+comparison operators
+====
+print 1 < 2.
+print 2 >= 2.
+print a <> b.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+logical operators
+====
+print not false and true or false.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean))))))))
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean)))))))))
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (boolean))))))))))
+    (terminator)))
+
+====
+call with arguments
+====
+print addThem(3, 4).
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)
+                      (arglist
+                        (or_expression
+                          (and_expression
+                            (comparison_expression
+                              (addition_expression
+                                (multiplication_expression
+                                  (unary_expression
+                                    (power_expression
+                                      (suffix_expression
+                                        (suffixterm
+                                          (number))))))))))
+                        (or_expression
+                          (and_expression
+                            (comparison_expression
+                              (addition_expression
+                                (multiplication_expression
+                                  (unary_expression
+                                    (power_expression
+                                      (suffix_expression
+                                        (suffixterm
+                                          (number))))))))))))))))))))
+    (terminator)))
+
+====
+nested call
+====
+print len(getName("bob")).
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)
+                      (arglist
+                        (or_expression
+                          (and_expression
+                            (comparison_expression
+                              (addition_expression
+                                (multiplication_expression
+                                  (unary_expression
+                                    (power_expression
+                                      (suffix_expression
+                                        (suffixterm
+                                          (identifier)
+                                          (arglist
+                                            (or_expression
+                                              (and_expression
+                                                (comparison_expression
+                                                  (addition_expression
+                                                    (multiplication_expression
+                                                      (unary_expression
+                                                        (power_expression
+                                                          (suffix_expression
+                                                            (suffixterm
+                                                              (string))))))))))))))))))))))))))))))
+    (terminator)))
+
+====
+suffix chains
+====
+print ship:velocity:orbit:x.
+print mylist[2].
+print mylist#3.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))
+                    (suffixterm
+                      (identifier))
+                    (suffixterm
+                      (identifier))
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)
+                      (or_expression
+                        (and_expression
+                          (comparison_expression
+                            (addition_expression
+                              (multiplication_expression
+                                (unary_expression
+                                  (power_expression
+                                    (suffix_expression
+                                      (suffixterm
+                                        (number)))))))))))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)
+                      (number))))))))))
+    (terminator)))
+
+====
+at suffix
+====
+print addThem(3, 4) at (1, 2).
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)
+                      (arglist
+                        (or_expression
+                          (and_expression
+                            (comparison_expression
+                              (addition_expression
+                                (multiplication_expression
+                                  (unary_expression
+                                    (power_expression
+                                      (suffix_expression
+                                        (suffixterm
+                                          (number))))))))))
+                        (or_expression
+                          (and_expression
+                            (comparison_expression
+                              (addition_expression
+                                (multiplication_expression
+                                  (unary_expression
+                                    (power_expression
+                                      (suffix_expression
+                                        (suffixterm
+                                          (number))))))))))))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator)))
+
+====
+ternary if-else
+====
+print choose a if b else c.
+---
+
+(program
+  (print_statement
+    (ternary_expression
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (identifier))))))))))
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (identifier))))))))))
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (identifier)))))))))))
+    (terminator)))
+
+====
+defined function
+====
+print defined x.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+mixed string and suffix
+====
+print "string" + ship:name.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (string))))))
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+scientific notation
+====
+print 1.5e3.
+print 2.5 e 3.
+print 4 e - 2 .
+print 12.3 e + 5.
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (sci_number
+                        (number)
+                        (exponent)
+                        (integer)))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (sci_number
+                        (number)
+                        (exponent)
+                        (integer)))))))))))
+    (terminator))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (sci_number
+                        (number)
+                        (exponent)
+                        (integer)))))))))))
+    (terminator)))

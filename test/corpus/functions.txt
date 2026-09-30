@@ -1,0 +1,219 @@
+====
+function declaration without trailing dot
+====
+function addThem {
+    return getParameter(1) + getParameter(2).
+}
+---
+
+(program
+  (declaration
+    (function_clause
+      (identifier)
+      (instruction_block
+        (return_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (identifier)
+                            (arglist
+                              (or_expression
+                                (and_expression
+                                  (comparison_expression
+                                    (addition_expression
+                                      (multiplication_expression
+                                        (unary_expression
+                                          (power_expression
+                                            (suffix_expression
+                                              (suffixterm
+                                                (number))))))))))))))))
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (identifier)
+                            (arglist
+                              (or_expression
+                                (and_expression
+                                  (comparison_expression
+                                    (addition_expression
+                                      (multiplication_expression
+                                        (unary_expression
+                                          (power_expression
+                                            (suffix_expression
+                                              (suffixterm
+                                                (number))))))))))))))))))))
+          (terminator))))))
+
+====
+function declaration with trailing dot
+====
+function addThem {
+    return getParameter(1) + getParameter(2).
+}.
+---
+
+(program
+  (declaration
+    (function_clause
+      (identifier)
+      (instruction_block
+        (return_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (identifier)
+                            (arglist
+                              (or_expression
+                                (and_expression
+                                  (comparison_expression
+                                    (addition_expression
+                                      (multiplication_expression
+                                        (unary_expression
+                                          (power_expression
+                                            (suffix_expression
+                                              (suffixterm
+                                                (number))))))))))))))))
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (identifier)
+                            (arglist
+                              (or_expression
+                                (and_expression
+                                  (comparison_expression
+                                    (addition_expression
+                                      (multiplication_expression
+                                        (unary_expression
+                                          (power_expression
+                                            (suffix_expression
+                                              (suffixterm
+                                                (number))))))))))))))))))))
+          (terminator)))
+      (terminator))))
+
+====
+bare function declaration
+====
+function f {
+    print x.
+}
+set y to f.
+---
+
+(program
+  (declaration
+    (function_clause
+      (identifier)
+      (instruction_block
+        (print_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (identifier))))))))))
+          (terminator)))))
+  (set_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+function followed by standalone dot
+====
+function f {
+    print x.
+}
+.
+print y.
+---
+
+(program
+  (declaration
+    (function_clause
+      (identifier)
+      (instruction_block
+        (print_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (identifier))))))))))
+          (terminator)))
+      (terminator)))
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (terminator)))
+
+====
+function with comments inside
+====
+function f {
+    // add stuff
+    return 1.
+}
+---
+
+(program
+  (declaration
+    (function_clause
+      (identifier)
+      (instruction_block
+        (comment)
+        (return_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (number))))))))))
+          (terminator))))))

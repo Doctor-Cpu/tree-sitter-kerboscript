@@ -1,0 +1,452 @@
+====
+if then
+====
+if myNumber = 10 {
+    print "ten".
+}
+---
+
+(program
+  (if_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (string))))))))))
+        (terminator)))))
+
+====
+if then else
+====
+if myNumber = 10 {
+    print "ten".
+} else {
+    print "not ten".
+}
+---
+
+(program
+  (if_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (string))))))))))
+        (terminator)))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (string))))))))))
+        (terminator)))))
+
+====
+if then else if else (dangling else)
+====
+if myNumber = 1 {
+    print "one".
+} else if myNumber = 2 {
+    print "two".
+} else {
+    print "other".
+}
+---
+
+(program
+  (if_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (string))))))))))
+        (terminator)))
+    (if_statement
+      (or_expression
+        (and_expression
+          (comparison_expression
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (identifier)))))))
+            (addition_expression
+              (multiplication_expression
+                (unary_expression
+                  (power_expression
+                    (suffix_expression
+                      (suffixterm
+                        (number))))))))))
+      (instruction_block
+        (print_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (string))))))))))
+          (terminator)))
+      (instruction_block
+        (print_statement
+          (or_expression
+            (and_expression
+              (comparison_expression
+                (addition_expression
+                  (multiplication_expression
+                    (unary_expression
+                      (power_expression
+                        (suffix_expression
+                          (suffixterm
+                            (string))))))))))
+          (terminator))))))
+
+====
+for in
+====
+for i in myList {
+    print i.
+}
+---
+
+(program
+  (for_statement
+    (identifier)
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (identifier))))))))))
+        (terminator)))))
+
+====
+until loop
+====
+until myNumber <> 0 {
+    set myNumber to myNumber - 1.
+}
+---
+
+(program
+  (until_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (instruction_block
+      (set_statement
+        (suffix_expression
+          (suffixterm
+            (identifier)))
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (identifier))))))
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (number))))))))))
+        (terminator)))))
+
+====
+from loop
+====
+from { set i to 1. } until i > 10 step { set i to i + 2. } do {
+    print i.
+}.
+---
+
+(program
+  (fromloop_statement
+    (instruction_block
+      (set_statement
+        (suffix_expression
+          (suffixterm
+            (identifier)))
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (number))))))))))
+        (terminator)))
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier)))))))
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (number))))))))))
+    (instruction_block
+      (set_statement
+        (suffix_expression
+          (suffixterm
+            (identifier)))
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (identifier))))))
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (number))))))))))
+        (terminator)))
+    (call_statement
+      (suffix_expression
+        (suffixterm
+          (instruction_block
+            (print_statement
+              (or_expression
+                (and_expression
+                  (comparison_expression
+                    (addition_expression
+                      (multiplication_expression
+                        (unary_expression
+                          (power_expression
+                            (suffix_expression
+                              (suffixterm
+                                (identifier))))))))))
+              (terminator)))))
+      (terminator))))
+
+====
+on statement
+====
+on myList {
+    print "changed".
+}
+---
+
+(program
+  (on_statement
+    (suffix_expression
+      (suffixterm
+        (identifier)))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (string))))))))))
+        (terminator)))))
+
+====
+when statement
+====
+when done then {
+    print "done".
+}
+---
+
+(program
+  (when_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (identifier))))))))))
+    (instruction_block
+      (print_statement
+        (or_expression
+          (and_expression
+            (comparison_expression
+              (addition_expression
+                (multiplication_expression
+                  (unary_expression
+                    (power_expression
+                      (suffix_expression
+                        (suffixterm
+                          (string))))))))))
+        (terminator)))))
+
+====
+block as atom with call
+====
+print {
+    return 1.
+}(2).
+---
+
+(program
+  (print_statement
+    (or_expression
+      (and_expression
+        (comparison_expression
+          (addition_expression
+            (multiplication_expression
+              (unary_expression
+                (power_expression
+                  (suffix_expression
+                    (suffixterm
+                      (instruction_block
+                        (return_statement
+                          (or_expression
+                            (and_expression
+                              (comparison_expression
+                                (addition_expression
+                                  (multiplication_expression
+                                    (unary_expression
+                                      (power_expression
+                                        (suffix_expression
+                                          (suffixterm
+                                            (number))))))))))
+                          (terminator)))
+                      (arglist
+                        (or_expression
+                          (and_expression
+                            (comparison_expression
+                              (addition_expression
+                                (multiplication_expression
+                                  (unary_expression
+                                    (power_expression
+                                      (suffix_expression
+                                        (suffixterm
+                                          (number))))))))))))))))))))
+    (terminator)))
