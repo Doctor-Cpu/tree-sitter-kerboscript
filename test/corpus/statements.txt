@@ -6,6 +6,7 @@ print myNumber.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -26,9 +27,11 @@ set myNumber to 10.
 
 (program
   (set_statement
+    (set)
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -49,9 +52,11 @@ set a to 1, b to 2, c to 3.
 
 (program
   (set_statement
+    (set)
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -65,6 +70,7 @@ set a to 1, b to 2, c to 3.
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -78,6 +84,7 @@ set a to 1, b to 2, c to 3.
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -99,6 +106,7 @@ remove "thing".
 
 (program
   (add_statement
+    (add)
     (or_expression
       (and_expression
         (comparison_expression
@@ -111,6 +119,7 @@ remove "thing".
                       (string))))))))))
     (terminator))
   (remove_statement
+    (remove)
     (or_expression
       (and_expression
         (comparison_expression
@@ -131,6 +140,7 @@ log "msg" to "file".
 
 (program
   (log_statement
+    (log)
     (or_expression
       (and_expression
         (comparison_expression
@@ -141,6 +151,7 @@ log "msg" to "file".
                   (suffix_expression
                     (suffixterm
                       (string))))))))))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -162,10 +173,13 @@ list x in y.
 
 (program
   (list_statement
+    (list)
     (identifier)
     (terminator))
   (list_statement
+    (list)
     (identifier)
+    (in)
     (identifier)
     (terminator)))
 
@@ -177,6 +191,7 @@ compile "a" to "b".
 
 (program
   (compile_statement
+    (compile)
     (or_expression
       (and_expression
         (comparison_expression
@@ -187,6 +202,7 @@ compile "a" to "b".
                   (suffix_expression
                     (suffixterm
                       (string))))))))))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -211,6 +227,7 @@ edit "a".
 
 (program
   (copy_statement
+    (copy)
     (or_expression
       (and_expression
         (comparison_expression
@@ -221,6 +238,7 @@ edit "a".
                   (suffix_expression
                     (suffixterm
                       (identifier))))))))))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -233,6 +251,8 @@ edit "a".
                       (identifier))))))))))
     (terminator))
   (rename_statement
+    (rename)
+    (file)
     (or_expression
       (and_expression
         (comparison_expression
@@ -243,6 +263,7 @@ edit "a".
                   (suffix_expression
                     (suffixterm
                       (identifier))))))))))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -255,6 +276,7 @@ edit "a".
                       (identifier))))))))))
     (terminator))
   (delete_statement
+    (delete)
     (or_expression
       (and_expression
         (comparison_expression
@@ -267,6 +289,7 @@ edit "a".
                       (string))))))))))
     (terminator))
   (delete_statement
+    (delete)
     (or_expression
       (and_expression
         (comparison_expression
@@ -277,6 +300,7 @@ edit "a".
                   (suffix_expression
                     (suffixterm
                       (string))))))))))
+    (from)
     (or_expression
       (and_expression
         (comparison_expression
@@ -289,6 +313,7 @@ edit "a".
                       (string))))))))))
     (terminator))
   (edit_statement
+    (edit)
     (or_expression
       (and_expression
         (comparison_expression
@@ -311,13 +336,18 @@ run myscript on ship.
 
 (program
   (run_statement
+    (run)
     (string)
     (terminator))
   (run_statement
+    (run)
+    (once)
     (string)
     (terminator))
   (run_statement
+    (run)
     (file_identifier)
+    (on)
     (or_expression
       (and_expression
         (comparison_expression
@@ -339,6 +369,7 @@ runoncepath ("a").
 
 (program
   (runpath_statement
+    (runpath)
     (or_expression
       (and_expression
         (comparison_expression
@@ -372,6 +403,7 @@ runoncepath ("a").
                         (number)))))))))))
     (terminator))
   (runoncepath_statement
+    (runoncepath)
     (or_expression
       (and_expression
         (comparison_expression
@@ -402,6 +434,7 @@ switch to "case1".
 
 (program
   (wait_statement
+    (wait)
     (or_expression
       (and_expression
         (comparison_expression
@@ -414,6 +447,8 @@ switch to "case1".
                       (number))))))))))
     (terminator))
   (wait_statement
+    (wait)
+    (until)
     (or_expression
       (and_expression
         (comparison_expression
@@ -426,23 +461,31 @@ switch to "case1".
                       (identifier))))))))))
     (terminator))
   (clearscreen_statement
+    (clearscreen)
     (terminator))
   (reboot_statement
+    (reboot)
     (terminator))
   (shutdown_statement
+    (shutdown)
     (terminator))
   (toggle_statement
+    (toggle)
     (suffix_expression
       (suffixterm
         (identifier)))
     (terminator))
   (stage_statement
+    (stage)
     (terminator))
   (break_statement
+    (break)
     (terminator))
   (preserve_statement
+    (preserve)
     (terminator))
   (return_statement
+    (return)
     (or_expression
       (and_expression
         (comparison_expression
@@ -455,6 +498,8 @@ switch to "case1".
                       (number))))))))))
     (terminator))
   (switch_statement
+    (switch)
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -489,9 +534,11 @@ set БНЯД to 2.
 
 (program
   (set_statement
+    (set)
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -504,9 +551,11 @@ set БНЯД to 2.
                       (number))))))))))
     (terminator))
   (set_statement
+    (set)
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -519,9 +568,11 @@ set БНЯД to 2.
                       (boolean))))))))))
     (terminator))
   (set_statement
+    (set)
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression

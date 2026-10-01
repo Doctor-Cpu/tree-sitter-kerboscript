@@ -10,6 +10,7 @@ print "hello".
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -22,6 +23,7 @@ print "hello".
                       (number))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -34,6 +36,7 @@ print "hello".
                       (number))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -46,6 +49,7 @@ print "hello".
                       (boolean))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -58,6 +62,7 @@ print "hello".
                       (boolean))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -78,6 +83,7 @@ print 2^3 + 10/2 * 3 - 4.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -124,6 +130,7 @@ print not false.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -136,12 +143,14 @@ print not false.
                       (number))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
           (addition_expression
             (multiplication_expression
               (unary_expression
+                (not)
                 (power_expression
                   (suffix_expression
                     (suffixterm
@@ -158,6 +167,7 @@ print a <> b.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -177,6 +187,7 @@ print a <> b.
                       (number))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -196,6 +207,7 @@ print a <> b.
                       (number))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -223,16 +235,19 @@ print not false and true or false.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
           (addition_expression
             (multiplication_expression
               (unary_expression
+                (not)
                 (power_expression
                   (suffix_expression
                     (suffixterm
                       (boolean))))))))
+        (and)
         (comparison_expression
           (addition_expression
             (multiplication_expression
@@ -241,6 +256,7 @@ print not false and true or false.
                   (suffix_expression
                     (suffixterm
                       (boolean)))))))))
+      (or)
       (and_expression
         (comparison_expression
           (addition_expression
@@ -260,6 +276,7 @@ print addThem(3, 4).
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -301,6 +318,7 @@ print len(getName("bob")).
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -345,6 +363,7 @@ print mylist#3.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -363,6 +382,7 @@ print mylist#3.
                       (identifier))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -385,6 +405,7 @@ print mylist#3.
                                         (number)))))))))))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -406,6 +427,7 @@ print addThem(3, 4) at (1, 2).
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -437,6 +459,7 @@ print addThem(3, 4) at (1, 2).
                                       (suffix_expression
                                         (suffixterm
                                           (number))))))))))))))))))))
+    (at)
     (or_expression
       (and_expression
         (comparison_expression
@@ -467,7 +490,9 @@ print choose a if b else c.
 
 (program
   (print_statement
+    (print)
     (ternary_expression
+      (choose)
       (or_expression
         (and_expression
           (comparison_expression
@@ -478,6 +503,7 @@ print choose a if b else c.
                     (suffix_expression
                       (suffixterm
                         (identifier))))))))))
+      (if)
       (or_expression
         (and_expression
           (comparison_expression
@@ -488,6 +514,7 @@ print choose a if b else c.
                     (suffix_expression
                       (suffixterm
                         (identifier))))))))))
+      (else)
       (or_expression
         (and_expression
           (comparison_expression
@@ -508,12 +535,14 @@ print defined x.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
           (addition_expression
             (multiplication_expression
               (unary_expression
+                (defined)
                 (power_expression
                   (suffix_expression
                     (suffixterm
@@ -528,6 +557,7 @@ print "string" + ship:name.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -559,6 +589,7 @@ print 12.3 e + 5.
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -571,6 +602,7 @@ print 12.3 e + 5.
                       (number))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -586,6 +618,7 @@ print 12.3 e + 5.
                         (integer)))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -601,6 +634,7 @@ print 12.3 e + 5.
                         (integer)))))))))))
     (terminator))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression

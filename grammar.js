@@ -2,10 +2,6 @@
  * @file kerboscript grammar for tree-sitter
  * @author Doctor-Cpu
  * @license GPLv3
- *
- * ported from the KOS project tpg grammar and scanner at
- * kOS.Safe/Compilation/KS so the grammar accepts the same scripts the
- * official parser accepts
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
@@ -15,10 +11,36 @@
 // matched case-insensitive and since the Tree-sitter regex expander
 // rejects the case flag and word boundaries each keyword letter is
 // written as a character class pair
-const kw = (word) =>
-  token(
-    new RegExp(word.replace(/[a-z]/g, (c) => '[' + c + c.toUpperCase() + ']')),
-  )
+const casepairs = (word) =>
+  word.replace(/[a-z]/g, (c) => '[' + c + c.toUpperCase() + ']')
+
+// reserved words as distinct named tokens so the query can style each
+// one while the per word symbols keep the exact parser states the old
+// anonymous kw tokens gave which is why this stays conflict free
+const RESERVED = [
+  'set', 'to', 'if', 'else', 'until', 'for', 'in', 'from', 'step', 'do',
+  'unlock', 'all', 'print', 'at', 'on', 'toggle', 'wait', 'when', 'then',
+  'stage', 'clearscreen', 'add', 'remove', 'log', 'break', 'preserve',
+  'declare', 'local', 'global', 'parameter', 'is', 'function', 'lock',
+  'return', 'switch', 'copy', 'rename', 'volume', 'file', 'delete',
+  'edit', 'run', 'once', 'runpath', 'runoncepath', 'compile', 'list',
+  'reboot', 'shutdown', 'unset', 'lazyglobal', 'off', 'clobberbuiltins',
+  'choose', 'not', 'defined', 'or', 'and',
+]
+
+// builtin functions as named tokens so calls highlight as builtins
+// they only ever occupy a value slot so they join the atom choice
+const BUILTINS = [
+  'assert', 'background', 'char', 'clock', 'date', 'display',
+  'foreground', 'input', 'mod', 'prompt', 'random', 'range', 'round',
+  'screen', 'time', 'version',
+]
+
+const namedTokens = {}
+for (const word of [...RESERVED, ...BUILTINS]) {
+  namedTokens[word] = () =>
+    token(new RegExp(casepairs(word)))
+}
 
 export default grammar({
   name: 'kerboscript',
@@ -37,8 +59,13 @@ export default grammar({
   ],
 
   rules: {
-    // top level
+    // the object's first rule becomes the start symbol so program stays first
     program: $ => repeat($._statement),
+
+    // reserved words and builtins are named terminal tokens defined
+    // before identifier so they win the equal length lexer tie against it
+    // keeping the per word parser states
+    ...namedTokens,
 
     _statement: $ => choice(
       $.empty_statement,
@@ -87,15 +114,15 @@ export default grammar({
     empty_statement: $ => $.terminator,
 
     set_statement: $ => seq(
-      kw('set'),
+      $.set,
       field('target', $._varidentifier),
-      kw('to'),
+      $.to,
       field('value', $._expression),
       repeat(
         seq(
           ',',
           field('target', $._varidentifier),
-          kw('to'),
+          $.to,
           field('value', $._expression),
         ),
       ),
@@ -105,91 +132,91 @@ export default grammar({
     // the else production outranks the plain one so a dangling else binds to the inner if the same way KOS does
     if_statement: $ => choice(
       prec(1, seq(
-        kw('if'),
+        $.if,
         field('condition', $._expression),
         field('then', $._instruction_terminator),
-        kw('else'),
+        $.else,
         field('else', $._instruction_terminator),
       )),
       seq(
-        kw('if'),
+        $.if,
         field('condition', $._expression),
         field('then', $._instruction_terminator),
       ),
     ),
 
     until_statement: $ => seq(
-      kw('until'),
+      $.until,
       field('condition', $._expression),
       field('body', $._instruction_terminator),
     ),
 
     for_statement: $ => seq(
-      kw('for'),
+      $.for,
       field('variable', $.identifier),
-      kw('in'),
+      $.in,
       field('list', $._varidentifier),
       field('body', $._instruction_terminator),
     ),
 
     fromloop_statement: $ => seq(
-      kw('from'),
+      $.from,
       field('init', $.instruction_block),
-      kw('until'),
+      $.until,
       field('condition', $._expression),
-      kw('step'),
+      $.step,
       field('step', $.instruction_block),
-      kw('do'),
+      $.do,
       field('body', $._instruction_terminator),
     ),
     unlock_statement: $ =>
-      seq(kw('unlock'), field('target', choice($.identifier, kw('all'))), $.terminator),
+      seq($.unlock, field('target', choice($.identifier, $.all)), $.terminator),
 
     print_statement: $ => seq(
-      kw('print'),
+      $.print,
       field('value', $._expression),
-      optional(seq(kw('at'), '(', $._expression, ',', $._expression, ')')),
+      optional(seq($.at, '(', $._expression, ',', $._expression, ')')),
       $.terminator,
     ),
 
     on_statement: $ => seq(
-      kw('on'),
+      $.on,
       field('trigger', $._varidentifier),
       field('action', $._instruction_terminator),
     ),
 
     toggle_statement: $ =>
-      seq(kw('toggle'), field('target', $._varidentifier), $.terminator),
+      seq($.toggle, field('target', $._varidentifier), $.terminator),
 
     wait_statement: $ =>
-      seq(kw('wait'), optional(kw('until')), field('duration', $._expression), $.terminator),
+      seq($.wait, optional($.until), field('duration', $._expression), $.terminator),
 
     when_statement: $ => seq(
-      kw('when'),
+      $.when,
       field('condition', $._expression),
-      kw('then'),
+      $.then,
       field('body', $._instruction_terminator),
     ),
 
-    stage_statement: $ => seq(kw('stage'), $.terminator),
+    stage_statement: $ => seq($.stage, $.terminator),
 
-    clearscreen_statement: $ => seq(kw('clearscreen'), $.terminator),
+    clearscreen_statement: $ => seq($.clearscreen, $.terminator),
 
-    add_statement: $ => seq(kw('add'), field('value', $._expression), $.terminator),
+    add_statement: $ => seq($.add, field('value', $._expression), $.terminator),
 
-    remove_statement: $ => seq(kw('remove'), field('value', $._expression), $.terminator),
+    remove_statement: $ => seq($.remove, field('value', $._expression), $.terminator),
 
     log_statement: $ => seq(
-      kw('log'),
+      $.log,
       field('message', $._expression),
-      kw('to'),
+      $.to,
       field('file', $._expression),
       $.terminator,
     ),
 
-    break_statement: $ => seq(kw('break'), $.terminator),
+    break_statement: $ => seq($.break, $.terminator),
 
-    preserve_statement: $ => seq(kw('preserve'), $.terminator),
+    preserve_statement: $ => seq($.preserve, $.terminator),
 
     declaration: $ => choice(
       // KOS lets parameter function and lock clauses stand bare but identifier declarations always carry the scope prefix
@@ -200,10 +227,10 @@ export default grammar({
         field(
           'scope',
           choice(
-            kw('declare'),
-            kw('local'),
-            kw('global'),
-            seq(kw('declare'), choice(kw('local'), kw('global'))),
+            $.declare,
+            $.local,
+            $.global,
+            seq($.declare, choice($.local, $.global)),
           ),
         ),
         choice(
@@ -217,13 +244,13 @@ export default grammar({
 
     identifier_clause: $ => seq(
       field('name', $.identifier),
-      choice(kw('to'), kw('is')),
+      choice($.to, $.is),
       field('value', $._expression),
       repeat(
         seq(
           ',',
           field('name', $.identifier),
-          choice(kw('to'), kw('is')),
+          choice($.to, $.is),
           field('value', $._expression),
         ),
       ),
@@ -231,14 +258,14 @@ export default grammar({
     ),
 
     parameter_clause: $ => seq(
-      kw('parameter'),
+      $.parameter,
       field('name', $.identifier),
-      optional(seq(choice(kw('to'), kw('is')), field('default', $._expression))),
+      optional(seq(choice($.to, $.is), field('default', $._expression))),
       repeat(
         seq(
           ',',
           field('name', $.identifier),
-          optional(seq(choice(kw('to'), kw('is')), field('default', $._expression))),
+          optional(seq(choice($.to, $.is), field('default', $._expression))),
         ),
       ),
       $.terminator,
@@ -246,66 +273,66 @@ export default grammar({
 
     // the closing brace already ends the declaration so the trailing dot is optional
     function_clause: $ => seq(
-      kw('function'),
+      $.function,
       field('name', $.identifier),
       field('body', $.instruction_block),
       optional($.terminator),
     ),
 
     lock_clause: $ => seq(
-      kw('lock'),
+      $.lock,
       field('target', $.identifier),
-      kw('to'),
+      $.to,
       field('value', $._expression),
       $.terminator,
     ),
 
     return_statement: $ =>
-      seq(kw('return'), optional(field('value', $._expression)), $.terminator),
+      seq($.return, optional(field('value', $._expression)), $.terminator),
 
     switch_statement: $ =>
-      seq(kw('switch'), kw('to'), field('target', $._expression), $.terminator),
+      seq($.switch, $.to, field('target', $._expression), $.terminator),
 
     copy_statement: $ =>
       seq(
-        kw('copy'),
+        $.copy,
         field('source', $._expression),
-        choice(kw('from'), kw('to')),
+        choice($.from, $.to),
         field('destination', $._expression),
         $.terminator,
       ),
 
     rename_statement: $ => seq(
-      kw('rename'),
-      optional(choice(kw('volume'), kw('file'))),
+      $.rename,
+      optional(choice($.volume, $.file)),
       field('old', $._expression),
-      kw('to'),
+      $.to,
       field('new', $._expression),
       $.terminator,
     ),
 
     delete_statement: $ =>
       seq(
-        kw('delete'),
+        $.delete,
         field('target', $._expression),
-        optional(seq(kw('from'), field('container', $._expression))),
+        optional(seq($.from, field('container', $._expression))),
         $.terminator,
       ),
 
-    edit_statement: $ => seq(kw('edit'), field('target', $._expression), $.terminator),
+    edit_statement: $ => seq($.edit, field('target', $._expression), $.terminator),
 
     run_statement: $ => seq(
-      kw('run'),
-      optional(kw('once')),
+      $.run,
+      optional($.once),
       field('target', choice($.file_identifier, $.string)),
       optional(seq('(', $.arglist, ')')),
-      optional(seq(kw('on'), $._expression)),
+      optional(seq($.on, $._expression)),
       $.terminator,
     ),
 
     runpath_statement: $ =>
       seq(
-        kw('runpath'),
+        $.runpath,
         '(',
         field('path', $._expression),
         optional(seq(',', $.arglist)),
@@ -315,7 +342,7 @@ export default grammar({
 
     runoncepath_statement: $ =>
       seq(
-        kw('runoncepath'),
+        $.runoncepath,
         '(',
         field('path', $._expression),
         optional(seq(',', $.arglist)),
@@ -325,30 +352,30 @@ export default grammar({
 
     compile_statement: $ =>
       seq(
-        kw('compile'),
+        $.compile,
         field('source', $._expression),
-        optional(seq(kw('to'), field('target', $._expression))),
+        optional(seq($.to, field('target', $._expression))),
         $.terminator,
       ),
 
     list_statement: $ =>
       seq(
-        kw('list'),
+        $.list,
         optional(
           seq(
             field('source', $.identifier),
-            optional(seq(kw('in'), field('target', $.identifier))),
+            optional(seq($.in, field('target', $.identifier))),
           ),
         ),
         $.terminator,
       ),
 
-    reboot_statement: $ => seq(kw('reboot'), $.terminator),
+    reboot_statement: $ => seq($.reboot, $.terminator),
 
-    shutdown_statement: $ => seq(kw('shutdown'), $.terminator),
+    shutdown_statement: $ => seq($.shutdown, $.terminator),
 
     unset_statement: $ =>
-      seq(kw('unset'), field('target', choice($.identifier, kw('all'))), $.terminator),
+      seq($.unset, field('target', choice($.identifier, $.all)), $.terminator),
 
     // blocks calls and directives
     instruction_block: $ => seq('{', repeat($._statement), '}'),
@@ -357,7 +384,7 @@ export default grammar({
     call_statement: $ =>
       seq(
         field('target', $.suffix_expression),
-        optional(choice(kw('on'), kw('off'))),
+        optional(choice($.on, $.off)),
         $.terminator,
       ),
 
@@ -365,10 +392,10 @@ export default grammar({
     directive: $ => seq('@', choice($.lazyglobal_directive, $.clobberbuiltins_directive)),
 
     lazyglobal_directive: $ =>
-      seq(kw('lazyglobal'), choice(kw('on'), kw('off')), $.terminator),
+      seq($.lazyglobal, choice($.on, $.off), $.terminator),
 
     clobberbuiltins_directive: $ =>
-      seq(kw('clobberbuiltins'), choice(kw('on'), kw('off')), $.terminator),
+      seq($.clobberbuiltins, choice($.on, $.off), $.terminator),
 
     // expressions
     // precedence loosest to tightest matching kRISC.tpg
@@ -382,20 +409,20 @@ export default grammar({
       prec(
         1,
         seq(
-          kw('choose'),
+          $.choose,
           field('value', $._expression),
-          kw('if'),
+          $.if,
           field('condition', $._expression),
-          kw('else'),
+          $.else,
           field('else', $._expression),
         ),
       ),
 
     or_expression: $ =>
-      prec.left(2, seq($.and_expression, repeat(seq(kw('or'), $.and_expression)))),
+      prec.left(2, seq($.and_expression, repeat(seq($.or, $.and_expression)))),
 
     and_expression: $ =>
-      prec.left(3, seq($.comparison_expression, repeat(seq(kw('and'), $.comparison_expression)))),
+      prec.left(3, seq($.comparison_expression, repeat(seq($.and, $.comparison_expression)))),
 
     comparison_expression: $ =>
       prec.left(
@@ -428,7 +455,7 @@ export default grammar({
       prec(
         7,
         seq(
-          optional(field('operator', choice('+', '-', kw('not'), kw('defined')))),
+          optional(field('operator', choice('+', '-', $.not, $.defined))),
           field('operand', $.power_expression),
         ),
       ),
@@ -476,6 +503,7 @@ export default grammar({
       field('value', $.string),
       field('value', $.identifier),
       field('value', $.file_identifier),
+      ...BUILTINS.map((word) => field('value', $[word])),
       seq('(', $._expression, ')'),
       $.instruction_block,
     ),

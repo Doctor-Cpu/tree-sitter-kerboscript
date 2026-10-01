@@ -9,9 +9,11 @@ function addThem {
 (program
   (declaration
     (function_clause
+      (function)
       (identifier)
       (instruction_block
         (return_statement
+          (return)
           (or_expression
             (and_expression
               (comparison_expression
@@ -63,9 +65,11 @@ function addThem {
 (program
   (declaration
     (function_clause
+      (function)
       (identifier)
       (instruction_block
         (return_statement
+          (return)
           (or_expression
             (and_expression
               (comparison_expression
@@ -119,9 +123,11 @@ set y to f.
 (program
   (declaration
     (function_clause
+      (function)
       (identifier)
       (instruction_block
         (print_statement
+          (print)
           (or_expression
             (and_expression
               (comparison_expression
@@ -134,9 +140,11 @@ set y to f.
                             (identifier))))))))))
           (terminator)))))
   (set_statement
+    (set)
     (suffix_expression
       (suffixterm
         (identifier)))
+    (to)
     (or_expression
       (and_expression
         (comparison_expression
@@ -162,9 +170,11 @@ print y.
 (program
   (declaration
     (function_clause
+      (function)
       (identifier)
       (instruction_block
         (print_statement
+          (print)
           (or_expression
             (and_expression
               (comparison_expression
@@ -178,6 +188,7 @@ print y.
           (terminator)))
       (terminator)))
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -202,10 +213,12 @@ function f {
 (program
   (declaration
     (function_clause
+      (function)
       (identifier)
       (instruction_block
         (comment)
         (return_statement
+          (return)
           (or_expression
             (and_expression
               (comparison_expression

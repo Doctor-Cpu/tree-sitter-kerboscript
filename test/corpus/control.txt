@@ -8,6 +8,7 @@ if myNumber = 10 {
 
 (program
   (if_statement
+    (if)
     (or_expression
       (and_expression
         (comparison_expression
@@ -27,6 +28,7 @@ if myNumber = 10 {
                       (number))))))))))
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -51,6 +53,7 @@ if myNumber = 10 {
 
 (program
   (if_statement
+    (if)
     (or_expression
       (and_expression
         (comparison_expression
@@ -70,6 +73,7 @@ if myNumber = 10 {
                       (number))))))))))
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -81,8 +85,10 @@ if myNumber = 10 {
                         (suffixterm
                           (string))))))))))
         (terminator)))
+    (else)
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -109,6 +115,7 @@ if myNumber = 1 {
 
 (program
   (if_statement
+    (if)
     (or_expression
       (and_expression
         (comparison_expression
@@ -128,6 +135,7 @@ if myNumber = 1 {
                       (number))))))))))
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -139,7 +147,9 @@ if myNumber = 1 {
                         (suffixterm
                           (string))))))))))
         (terminator)))
+    (else)
     (if_statement
+      (if)
       (or_expression
         (and_expression
           (comparison_expression
@@ -159,6 +169,7 @@ if myNumber = 1 {
                         (number))))))))))
       (instruction_block
         (print_statement
+          (print)
           (or_expression
             (and_expression
               (comparison_expression
@@ -170,8 +181,10 @@ if myNumber = 1 {
                           (suffixterm
                             (string))))))))))
           (terminator)))
+      (else)
       (instruction_block
         (print_statement
+          (print)
           (or_expression
             (and_expression
               (comparison_expression
@@ -194,12 +207,15 @@ for i in myList {
 
 (program
   (for_statement
+    (for)
     (identifier)
+    (in)
     (suffix_expression
       (suffixterm
         (identifier)))
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -222,6 +238,7 @@ until myNumber <> 0 {
 
 (program
   (until_statement
+    (until)
     (or_expression
       (and_expression
         (comparison_expression
@@ -241,9 +258,11 @@ until myNumber <> 0 {
                       (number))))))))))
     (instruction_block
       (set_statement
+        (set)
         (suffix_expression
           (suffixterm
             (identifier)))
+        (to)
         (or_expression
           (and_expression
             (comparison_expression
@@ -272,11 +291,14 @@ from { set i to 1. } until i > 10 step { set i to i + 2. } do {
 
 (program
   (fromloop_statement
+    (from)
     (instruction_block
       (set_statement
+        (set)
         (suffix_expression
           (suffixterm
             (identifier)))
+        (to)
         (or_expression
           (and_expression
             (comparison_expression
@@ -288,6 +310,7 @@ from { set i to 1. } until i > 10 step { set i to i + 2. } do {
                         (suffixterm
                           (number))))))))))
         (terminator)))
+    (until)
     (or_expression
       (and_expression
         (comparison_expression
@@ -305,11 +328,14 @@ from { set i to 1. } until i > 10 step { set i to i + 2. } do {
                   (suffix_expression
                     (suffixterm
                       (number))))))))))
+    (step)
     (instruction_block
       (set_statement
+        (set)
         (suffix_expression
           (suffixterm
             (identifier)))
+        (to)
         (or_expression
           (and_expression
             (comparison_expression
@@ -327,11 +353,13 @@ from { set i to 1. } until i > 10 step { set i to i + 2. } do {
                         (suffixterm
                           (number))))))))))
         (terminator)))
+    (do)
     (call_statement
       (suffix_expression
         (suffixterm
           (instruction_block
             (print_statement
+              (print)
               (or_expression
                 (and_expression
                   (comparison_expression
@@ -355,11 +383,13 @@ on myList {
 
 (program
   (on_statement
+    (on)
     (suffix_expression
       (suffixterm
         (identifier)))
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -382,6 +412,7 @@ when done then {
 
 (program
   (when_statement
+    (when)
     (or_expression
       (and_expression
         (comparison_expression
@@ -392,8 +423,10 @@ when done then {
                   (suffix_expression
                     (suffixterm
                       (identifier))))))))))
+    (then)
     (instruction_block
       (print_statement
+        (print)
         (or_expression
           (and_expression
             (comparison_expression
@@ -416,6 +449,7 @@ print {
 
 (program
   (print_statement
+    (print)
     (or_expression
       (and_expression
         (comparison_expression
@@ -427,6 +461,7 @@ print {
                     (suffixterm
                       (instruction_block
                         (return_statement
+                          (return)
                           (or_expression
                             (and_expression
                               (comparison_expression

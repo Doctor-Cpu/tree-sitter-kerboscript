@@ -19,9 +19,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "add",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -53,6 +57,10 @@
       "required": true,
       "types": [
         {
+          "type": "and",
+          "named": true
+        },
+        {
           "type": "comparison_expression",
           "named": true
         }
@@ -83,9 +91,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "break",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -109,9 +121,17 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "off",
+          "named": true
+        },
+        {
+          "type": "on",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -124,9 +144,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "clearscreen",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -139,9 +163,21 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "clobberbuiltins",
+          "named": true
+        },
+        {
+          "type": "off",
+          "named": true
+        },
+        {
+          "type": "on",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -198,11 +234,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "compile",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -242,11 +286,23 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "copy",
+          "named": true
+        },
+        {
+          "type": "from",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -255,7 +311,26 @@
   {
     "type": "declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "scope": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "declare",
+            "named": true
+          },
+          {
+            "type": "global",
+            "named": true
+          },
+          {
+            "type": "local",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
@@ -313,9 +388,17 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "delete",
+          "named": true
+        },
+        {
+          "type": "from",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -362,9 +445,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "edit",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -569,6 +656,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "in",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -767,6 +868,28 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "do",
+          "named": true
+        },
+        {
+          "type": "from",
+          "named": true
+        },
+        {
+          "type": "step",
+          "named": true
+        },
+        {
+          "type": "until",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -795,9 +918,13 @@
       }
     },
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "function",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -835,11 +962,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "is",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -1179,6 +1314,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "else",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1345,9 +1494,21 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "lazyglobal",
+          "named": true
+        },
+        {
+          "type": "off",
+          "named": true
+        },
+        {
+          "type": "on",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -1381,9 +1542,17 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "in",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -1421,11 +1590,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "lock",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -1465,11 +1642,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "log",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -1662,6 +1847,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "on",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1674,6 +1869,10 @@
       "types": [
         {
           "type": "and_expression",
+          "named": true
+        },
+        {
+          "type": "or",
           "named": true
         }
       ]
@@ -1709,11 +1908,23 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "is",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -1739,9 +1950,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "preserve",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -1773,7 +1988,15 @@
       "required": true,
       "types": [
         {
+          "type": "at",
+          "named": true
+        },
+        {
           "type": "or_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -1952,9 +2175,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "reboot",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -1982,9 +2209,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "remove",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -2026,11 +2257,27 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "file",
+          "named": true
+        },
+        {
+          "type": "rename",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
+          "named": true
+        },
+        {
+          "type": "volume",
           "named": true
         }
       ]
@@ -2056,9 +2303,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "return",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -2094,7 +2345,19 @@
           "named": true
         },
         {
+          "type": "on",
+          "named": true
+        },
+        {
+          "type": "once",
+          "named": true
+        },
+        {
           "type": "or_expression",
+          "named": true
+        },
+        {
+          "type": "run",
           "named": true
         },
         {
@@ -2136,6 +2399,10 @@
           "named": true
         },
         {
+          "type": "runoncepath",
+          "named": true
+        },
+        {
           "type": "terminator",
           "named": true
         }
@@ -2167,6 +2434,10 @@
       "types": [
         {
           "type": "arglist",
+          "named": true
+        },
+        {
+          "type": "runpath",
           "named": true
         },
         {
@@ -2256,11 +2527,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "set",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -2271,9 +2550,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "shutdown",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -2286,9 +2569,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "stage",
+          "named": true
+        },
         {
           "type": "terminator",
           "named": true
@@ -2339,7 +2626,31 @@
             "named": false
           },
           {
+            "type": "assert",
+            "named": true
+          },
+          {
+            "type": "background",
+            "named": true
+          },
+          {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "char",
+            "named": true
+          },
+          {
+            "type": "clock",
+            "named": true
+          },
+          {
+            "type": "date",
+            "named": true
+          },
+          {
+            "type": "display",
             "named": true
           },
           {
@@ -2347,11 +2658,23 @@
             "named": true
           },
           {
+            "type": "foreground",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
+            "type": "input",
+            "named": true
+          },
+          {
             "type": "instruction_block",
+            "named": true
+          },
+          {
+            "type": "mod",
             "named": true
           },
           {
@@ -2363,7 +2686,27 @@
             "named": true
           },
           {
+            "type": "prompt",
+            "named": true
+          },
+          {
+            "type": "random",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "round",
+            "named": true
+          },
+          {
             "type": "sci_number",
+            "named": true
+          },
+          {
+            "type": "screen",
             "named": true
           },
           {
@@ -2372,6 +2715,14 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "time",
+            "named": true
+          },
+          {
+            "type": "version",
             "named": true
           }
         ]
@@ -2431,7 +2782,31 @@
         "required": false,
         "types": [
           {
+            "type": "assert",
+            "named": true
+          },
+          {
+            "type": "background",
+            "named": true
+          },
+          {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "char",
+            "named": true
+          },
+          {
+            "type": "clock",
+            "named": true
+          },
+          {
+            "type": "date",
+            "named": true
+          },
+          {
+            "type": "display",
             "named": true
           },
           {
@@ -2439,7 +2814,19 @@
             "named": true
           },
           {
+            "type": "foreground",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "input",
+            "named": true
+          },
+          {
+            "type": "mod",
             "named": true
           },
           {
@@ -2447,11 +2834,39 @@
             "named": true
           },
           {
+            "type": "prompt",
+            "named": true
+          },
+          {
+            "type": "random",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "round",
+            "named": true
+          },
+          {
             "type": "sci_number",
             "named": true
           },
           {
+            "type": "screen",
+            "named": true
+          },
+          {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "time",
+            "named": true
+          },
+          {
+            "type": "version",
             "named": true
           }
         ]
@@ -2478,11 +2893,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "switch",
+          "named": true
+        },
+        {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "to",
           "named": true
         }
       ]
@@ -2534,6 +2957,24 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "choose",
+          "named": true
+        },
+        {
+          "type": "else",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2552,11 +2993,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "toggle",
           "named": true
         }
       ]
@@ -2587,6 +3032,14 @@
           {
             "type": "-",
             "named": false
+          },
+          {
+            "type": "defined",
+            "named": true
+          },
+          {
+            "type": "not",
+            "named": true
           }
         ]
       }
@@ -2601,6 +3054,10 @@
         "required": true,
         "types": [
           {
+            "type": "all",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -2608,11 +3065,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "unlock",
           "named": true
         }
       ]
@@ -2627,6 +3088,10 @@
         "required": true,
         "types": [
           {
+            "type": "all",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -2634,11 +3099,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "unset",
           "named": true
         }
       ]
@@ -2820,6 +3289,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "until",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2842,11 +3321,19 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "until",
+          "named": true
+        },
+        {
+          "type": "wait",
           "named": true
         }
       ]
@@ -3028,6 +3515,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "then",
+          "named": true
+        },
+        {
+          "type": "when",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3107,7 +3608,55 @@
     "named": false
   },
   {
+    "type": "add",
+    "named": true
+  },
+  {
+    "type": "all",
+    "named": true
+  },
+  {
+    "type": "and",
+    "named": true
+  },
+  {
+    "type": "assert",
+    "named": true
+  },
+  {
+    "type": "at",
+    "named": true
+  },
+  {
+    "type": "background",
+    "named": true
+  },
+  {
     "type": "boolean",
+    "named": true
+  },
+  {
+    "type": "break",
+    "named": true
+  },
+  {
+    "type": "char",
+    "named": true
+  },
+  {
+    "type": "choose",
+    "named": true
+  },
+  {
+    "type": "clearscreen",
+    "named": true
+  },
+  {
+    "type": "clobberbuiltins",
+    "named": true
+  },
+  {
+    "type": "clock",
     "named": true
   },
   {
@@ -3116,7 +3665,51 @@
     "extra": true
   },
   {
+    "type": "compile",
+    "named": true
+  },
+  {
+    "type": "copy",
+    "named": true
+  },
+  {
+    "type": "date",
+    "named": true
+  },
+  {
+    "type": "declare",
+    "named": true
+  },
+  {
+    "type": "defined",
+    "named": true
+  },
+  {
+    "type": "delete",
+    "named": true
+  },
+  {
+    "type": "display",
+    "named": true
+  },
+  {
+    "type": "do",
+    "named": true
+  },
+  {
+    "type": "edit",
+    "named": true
+  },
+  {
+    "type": "else",
+    "named": true
+  },
+  {
     "type": "exponent",
+    "named": true
+  },
+  {
+    "type": "file",
     "named": true
   },
   {
@@ -3124,7 +3717,39 @@
     "named": true
   },
   {
+    "type": "for",
+    "named": true
+  },
+  {
+    "type": "foreground",
+    "named": true
+  },
+  {
+    "type": "from",
+    "named": true
+  },
+  {
+    "type": "function",
+    "named": true
+  },
+  {
+    "type": "global",
+    "named": true
+  },
+  {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "if",
+    "named": true
+  },
+  {
+    "type": "in",
+    "named": true
+  },
+  {
+    "type": "input",
     "named": true
   },
   {
@@ -3132,7 +3757,131 @@
     "named": true
   },
   {
+    "type": "is",
+    "named": true
+  },
+  {
+    "type": "lazyglobal",
+    "named": true
+  },
+  {
+    "type": "list",
+    "named": true
+  },
+  {
+    "type": "local",
+    "named": true
+  },
+  {
+    "type": "lock",
+    "named": true
+  },
+  {
+    "type": "log",
+    "named": true
+  },
+  {
+    "type": "mod",
+    "named": true
+  },
+  {
+    "type": "not",
+    "named": true
+  },
+  {
     "type": "number",
+    "named": true
+  },
+  {
+    "type": "off",
+    "named": true
+  },
+  {
+    "type": "on",
+    "named": true
+  },
+  {
+    "type": "once",
+    "named": true
+  },
+  {
+    "type": "or",
+    "named": true
+  },
+  {
+    "type": "parameter",
+    "named": true
+  },
+  {
+    "type": "preserve",
+    "named": true
+  },
+  {
+    "type": "print",
+    "named": true
+  },
+  {
+    "type": "prompt",
+    "named": true
+  },
+  {
+    "type": "random",
+    "named": true
+  },
+  {
+    "type": "range",
+    "named": true
+  },
+  {
+    "type": "reboot",
+    "named": true
+  },
+  {
+    "type": "remove",
+    "named": true
+  },
+  {
+    "type": "rename",
+    "named": true
+  },
+  {
+    "type": "return",
+    "named": true
+  },
+  {
+    "type": "round",
+    "named": true
+  },
+  {
+    "type": "run",
+    "named": true
+  },
+  {
+    "type": "runoncepath",
+    "named": true
+  },
+  {
+    "type": "runpath",
+    "named": true
+  },
+  {
+    "type": "screen",
+    "named": true
+  },
+  {
+    "type": "set",
+    "named": true
+  },
+  {
+    "type": "shutdown",
+    "named": true
+  },
+  {
+    "type": "stage",
+    "named": true
+  },
+  {
+    "type": "step",
     "named": true
   },
   {
@@ -3140,7 +3889,55 @@
     "named": true
   },
   {
+    "type": "switch",
+    "named": true
+  },
+  {
     "type": "terminator",
+    "named": true
+  },
+  {
+    "type": "then",
+    "named": true
+  },
+  {
+    "type": "time",
+    "named": true
+  },
+  {
+    "type": "to",
+    "named": true
+  },
+  {
+    "type": "toggle",
+    "named": true
+  },
+  {
+    "type": "unlock",
+    "named": true
+  },
+  {
+    "type": "unset",
+    "named": true
+  },
+  {
+    "type": "until",
+    "named": true
+  },
+  {
+    "type": "version",
+    "named": true
+  },
+  {
+    "type": "volume",
+    "named": true
+  },
+  {
+    "type": "wait",
+    "named": true
+  },
+  {
+    "type": "when",
     "named": true
   },
   {
